@@ -19,3 +19,23 @@
 .apskritimas {
   border-radius: 50%;
 }
+
+.bala {
+  width: 40rem;
+  height: 4rem;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.porinisNeporinis {
+  display: flex;
+  column-gap: 6rem;
+}
+
+.flex {
+  display: flex;
+  column-gap: 2rem;
+}

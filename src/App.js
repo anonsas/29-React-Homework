@@ -1,5 +1,5 @@
 import './App.css';
-import Main from './1-React-base-list/Main';
+import Main from './2-React-list/Main';
 
 function App() {
   return (
