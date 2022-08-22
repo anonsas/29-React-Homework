@@ -1,0 +1,21 @@
+.dogs-container {
+  margin: 2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.kvadratas,
+.apskritimas {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #000;
+
+  display: grid;
+  place-items: center;
+}
+
+.apskritimas {
+  border-radius: 50%;
+}
