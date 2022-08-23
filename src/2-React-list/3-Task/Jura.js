@@ -16,7 +16,7 @@ function Jura({ seaPlaners }) {
         return (
           <div key={id} className="flex">
             <h4>Jura</h4>
-            <p type={type} name={name}>
+            <p>
               {type} - {name}
             </p>
           </div>

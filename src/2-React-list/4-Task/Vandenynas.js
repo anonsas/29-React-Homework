@@ -24,6 +24,7 @@ function Vandenynas({ seaPlaners }) {
   );
 }
 
+//======================================
 function Tipas({ seaPlaners }) {
   return (
     <div>

@@ -31,6 +31,7 @@ function Pasaulis({ seaPlaners }) {
     </div>
   );
 }
+//==========================================
 
 function Namas({ planer }) {
   const { id, type, name, color } = planer;

@@ -1,5 +1,5 @@
-import './App.css';
-import Main from './2-React-list/Main';
+import './App.scss';
+import Main from './3-React-state/Main';
 
 function App() {
   return (

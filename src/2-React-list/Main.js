@@ -20,7 +20,7 @@ function Main() {
     { id: 10, type: 'man', name: 'Teta Toma', color: 'yellow' },
   ];
   return (
-    <>
+    <div className="list">
       <div>
         {seaPlaners.map(({ id, type, name, color }) => (
           <Bala key={id} id={id} type={type} name={name} color={color} />
@@ -34,7 +34,7 @@ function Main() {
       <Vandenynas seaPlaners={seaPlaners} />
 
       <Pasaulis seaPlaners={seaPlaners} />
-    </>
+    </div>
   );
 }
 
