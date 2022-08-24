@@ -3,8 +3,14 @@ import React, { useState } from 'react';
 function Squares() {
   const [squares, setSquares] = useState([]);
 
-  const addRedSquare = () => setSquares((prevState) => [...prevState, 'red']);
-  const addBlueSquare = () => setSquares((prevState) => [...prevState, 'blue']);
+  const addRedSquare = () => {
+    setSquares((prevState) => [...prevState, { color: 'red' }]);
+  };
+
+  const addBlueSquare = () => {
+    setSquares((prevState) => [...prevState, { color: 'blue' }]);
+  };
+
   const resetHandler = () => setSquares([]);
 
   return (
@@ -18,8 +24,10 @@ function Squares() {
       </div>
 
       <div className="squares-container">
-        {squares.map((square) => (
-          <div className={`square ${square === 'red' && 'red-square'}`}>square</div>
+        {squares.map((square, i) => (
+          <div key={i} className={`square ${square.color === 'red' && 'red-square'}`}>
+            {square.color}
+          </div>
         ))}
       </div>
     </div>

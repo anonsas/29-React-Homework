@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 function Kvadratai() {
-  const [squares, setSquares] = useState(0);
+  const [squares, setSquares] = useState([]);
 
-  const addSquares = () => setSquares((prevState) => prevState + 1);
-  const resetSquares = () => setSquares(0);
+  const addSquares = () => setSquares((prevState) => [...prevState, '']);
+  const resetSquares = () => setSquares([]);
 
   return (
     <div className="container">
@@ -14,8 +14,10 @@ function Kvadratai() {
       </div>
 
       <div className="squares-container">
-        {[...Array(squares)].map((_) => (
-          <div className="square">square</div>
+        {squares?.map((_, i) => (
+          <div key={i} className="square">
+            square - {++i}
+          </div>
         ))}
       </div>
     </div>
