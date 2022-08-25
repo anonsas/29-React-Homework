@@ -1,12 +1,17 @@
 import './App.scss';
-import Main from './3-React-state/Main';
-import Class from './Class/Class';
+import Main from './5-API/Main';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <>
-      <Class />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Main />
+      <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
+    </QueryClientProvider>
   );
 }
 

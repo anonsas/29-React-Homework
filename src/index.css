@@ -32,6 +32,10 @@ body {
 
   font-size: 1.6rem; /* 16px or style elements individually */
   min-height: 100vh; /* body - takes the full screen */
+
+  background-image: url('../public/bg.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Changing the style of selected text */
