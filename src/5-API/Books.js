@@ -9,25 +9,24 @@ function Books() {
     return axios.get('https://in3.dev/knygos/');
   };
 
-  // axios.get('https://in3.dev/knygos/').then((response) => {
-  //   const updatedData = response.data.map((item) => {
-  //     return {
-  //       id: item.id,
-  //       type: item.type,
-  //       img: item.img,
-  //       author: item.author,
-  //       title: item.title,
-  //       price: item.price,
-  //       time: new Date(item.time).toLocaleDateString(),
-  //     };
-  //   });
-  // });
-
-  const { isLoading, isFetching, data, isError, error } = useQuery(['books'], () =>
-    fetchBooks()
+  const { isLoading, isFetching, data, isError, error } = useQuery(
+    ['books'],
+    fetchBooks,
+    {
+      select: (data) => {
+        const books = data.data.map((item) => ({
+          id: item.id,
+          type: item.type,
+          img: item.img,
+          author: item.author,
+          title: item.title,
+          price: item.price,
+          time: new Date(item.time).toLocaleDateString(),
+        }));
+        return books;
+      },
+    }
   );
-
-  console.log(error);
 
   if (isLoading || isFetching) {
     return <Loader />;
@@ -43,7 +42,7 @@ function Books() {
 
   return (
     <ul className="book-list">
-      {data.data?.map((book) => (
+      {data?.map((book) => (
         <li key={book.id} className="book">
           <div className="book__img-container">
             <img src={book.img} alt={book.title} />
