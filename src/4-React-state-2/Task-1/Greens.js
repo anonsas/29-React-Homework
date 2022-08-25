@@ -22,20 +22,13 @@ function Greens() {
 
   const activateTree = (treeId) => {
     // const newState = trees.map((tree) => {
-    //   if (tree.id === treeId) {
-    //     return { ...tree, active: !tree.active };
-    //   }
-
-    //   return tree;
+    //   return tree.id === treeId ? { ...tree, active: !tree.active } : tree;
     // });
     // setTrees(newState);
 
     setTrees((prevState) => {
       return prevState.map((tree) => {
-        if (tree.id === treeId) {
-          return { ...tree, active: !tree.active };
-        }
-        return tree;
+        return tree.id === treeId ? { ...tree, active: !tree.active } : tree;
       });
     });
   };

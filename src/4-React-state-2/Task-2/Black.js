@@ -11,10 +11,7 @@ function Black() {
   const updateSquareValue = (squareId) => {
     setSquareList((prevState) => {
       return prevState.map((square) => {
-        if (square.id === squareId) {
-          return { ...square, value: square.value + 1 };
-        }
-        return square;
+        return square.id === squareId ? { ...square, value: square.value + 1 } : square;
       });
     });
   };

@@ -1,10 +1,11 @@
 import './App.scss';
-import Main from './4-React-state-2/Main';
+import Main from './3-React-state/Main';
+import Class from './Class/Class';
 
 function App() {
   return (
     <>
-      <Main />
+      <Class />
     </>
   );
 }
