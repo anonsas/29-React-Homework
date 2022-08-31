@@ -18,3 +18,19 @@
   display: grid;
   place-items: center;
 }
+//================================
+.cat-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  align-items: flex-start;
+  border-bottom: 2px solid orangered;
+  padding-bottom: 1rem;
+}
+
+.cat-list {
+  .cat {
+    display: flex;
+    column-gap: 2rem;
+  }
+}
