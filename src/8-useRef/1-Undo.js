@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import rand from '../utils/rand';
 
 function Undo() {
-  const [squares, setSquares] = useState({
-    square: rand(5, 10),
-    allSquares: [],
-  });
+  const [squares, setSquares] = useState(null);
 
   const addSquaresHandler = () => {
     setSquares((prevState) => ({
@@ -21,11 +18,23 @@ function Undo() {
   };
 
   const resetSquaresHandler = () => {
-    setSquares({
-      square: rand(5, 10),
-      allSquares: [],
-    });
+    localStorage.removeItem('squareList');
+    setSquares(null);
   };
+
+  useEffect(() => {
+    if (squares === null) {
+      const squareList = localStorage.getItem('squareList');
+      squareList === null
+        ? setSquares({
+            square: rand(5, 10),
+            allSquares: [],
+          })
+        : setSquares(JSON.parse(squareList));
+    } else {
+      localStorage.setItem('squareList', JSON.stringify(squares));
+    }
+  }, [squares]);
 
   return (
     <div className="main">
@@ -41,13 +50,14 @@ function Undo() {
         </button>
       </div>
       <div className="square-list">
-        {[...Array(squares.allSquares.reduce((total, curr) => total + curr, 0))]
-          .fill()
-          .map((_, i) => (
-            <div className="square" key={i}>
-              {i}
-            </div>
-          ))}
+        {squares &&
+          [...Array(squares.allSquares.reduce((total, curr) => total + curr, 0))]
+            .fill()
+            .map((_, i) => (
+              <div className="square" key={i}>
+                {i + 1}
+              </div>
+            ))}
       </div>
     </div>
   );
