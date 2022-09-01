@@ -1,7 +1,13 @@
 import React from 'react';
+import './Main.scss';
+import Undo from './1-Undo';
 
 function Main() {
-  return <div>Main</div>;
+  return (
+    <div>
+      <Undo />
+    </div>
+  );
 }
 
 export default Main;

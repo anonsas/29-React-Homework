@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 function Select() {
   const [input, setInput] = useState('');
   const [select, setSelect] = useState({
-    color: '',
-    fontSize: '',
-    fontFamily: '',
+    color: 'red',
+    fontSize: '10',
+    fontFamily: 'Arial',
   });
 
   const handleChange = (e) => {

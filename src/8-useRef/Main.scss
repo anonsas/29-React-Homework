@@ -1,0 +1,29 @@
+.main {
+  padding: 2rem;
+}
+
+.cat-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  align-items: flex-start;
+  border-bottom: 2px solid orangered;
+  padding-bottom: 1rem;
+}
+
+.square-list {
+  margin-top: 2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.square {
+  height: 5rem;
+  width: 5rem;
+  background-color: orangered;
+
+  display: grid;
+  place-items: center;
+}
