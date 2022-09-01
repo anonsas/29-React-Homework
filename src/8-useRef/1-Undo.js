@@ -1,40 +1,31 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import rand from '../utils/rand';
 
 function Undo() {
-  const [randomSquare, setRandomSquare] = useState(rand(5, 10));
-  const [totalSquares, setTotalSquares] = useState(0);
-  const [squares, setSquares] = useState([]);
-  const [addCount, setAddCount] = useState(0);
+  const [squares, setSquares] = useState({
+    square: rand(5, 10),
+    allSquares: [],
+  });
 
   const addSquaresHandler = () => {
-    setRandomSquare(rand(5, 10));
-    setSquares((prevState) => [...prevState, randomSquare]);
-    setTotalSquares((prevState) => prevState + randomSquare);
+    setSquares((prevState) => ({
+      square: rand(5, 10),
+      allSquares: [...prevState.allSquares, prevState.square],
+    }));
   };
 
   const undoSquaresHandler = () => {
-    setAddCount((prevState) => prevState - 1);
-    const newSquares = [...squares];
-    newSquares.splice(squares.length - 1, 1);
+    const newSquares = { ...squares };
+    newSquares.allSquares.splice(newSquares.allSquares.length - 1, 1);
     setSquares(newSquares);
-    console.log(newSquares);
   };
 
   const resetSquaresHandler = () => {
-    setTotalSquares(0);
-    setSquares([]);
-    setAddCount(0);
+    setSquares({
+      square: rand(5, 10),
+      allSquares: [],
+    });
   };
-
-  // useEffect(() => {
-  //   if (squares === null) {
-  //     const squareList = localStorage.getItem('squareList');
-  //     squareList === null ? setSquares(0) : setSquares(JSON.parse(squareList));
-  //   } else {
-  //     localStorage.setItem('squareList', JSON.stringify(squares));
-  //   }
-  // }, [squares]);
 
   return (
     <div className="main">
@@ -50,11 +41,13 @@ function Undo() {
         </button>
       </div>
       <div className="square-list">
-        {[...Array(totalSquares)].fill().map((_, i) => (
-          <div className="square" key={i}>
-            {i}
-          </div>
-        ))}
+        {[...Array(squares.allSquares.reduce((total, curr) => total + curr, 0))]
+          .fill()
+          .map((_, i) => (
+            <div className="square" key={i}>
+              {i}
+            </div>
+          ))}
       </div>
     </div>
   );
