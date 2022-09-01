@@ -17,6 +17,14 @@
 
   display: grid;
   place-items: center;
+
+  .square-black {
+    background-color: #000;
+  }
+}
+
+.square-black-input {
+  margin-top: 2rem;
 }
 //================================
 .cat-form {

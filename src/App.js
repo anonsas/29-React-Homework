@@ -8,10 +8,12 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Main />
-      <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Main />
+        <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
+      </QueryClientProvider>
+    </>
   );
 }
 
