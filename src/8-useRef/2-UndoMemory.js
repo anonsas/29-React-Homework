@@ -8,12 +8,19 @@ function UndoMemory() {
     setSquares((prevState) => ({
       square: rand(5, 10),
       allSquares: [...prevState.allSquares, prevState.square],
+      step: prevState.step + 1,
     }));
   };
 
   const undoSquaresHandler = () => {
-    const newSquares = { ...squares };
+    let newSquares = { ...squares };
     newSquares.allSquares.splice(newSquares.allSquares.length - 1, 1);
+    if (newSquares.step > 0) {
+      newSquares.step = newSquares.step - 1;
+    } else {
+      newSquares.step = 0;
+    }
+
     setSquares(newSquares);
   };
 
@@ -23,8 +30,12 @@ function UndoMemory() {
   };
 
   const selectStep = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    const selectedStep = e.target.value;
+
+    setSquares((prevState) => ({
+      ...prevState,
+      step: selectedStep,
+    }));
   };
 
   useEffect(() => {
@@ -34,7 +45,7 @@ function UndoMemory() {
         ? setSquares({
             square: rand(5, 10),
             allSquares: [],
-            steps: 0,
+            step: 0,
           })
         : setSquares(JSON.parse(squareList));
     } else {
@@ -54,29 +65,30 @@ function UndoMemory() {
         <button type="button" onClick={resetSquaresHandler}>
           Reset
         </button>
+
         {squares?.allSquares.length ? (
           <select name="steps" onChange={selectStep}>
-            {[
-              ...Array(squares.allSquares.length)
-                .fill()
-                .map((_, i) => (
-                  <option key={i} value={i}>
-                    {i}
-                  </option>
-                )),
-            ]}
+            {[...Array(squares.allSquares.length)].map((_, i) => (
+              <option key={i} value={i + 1} selected={squares.allSquares.length}>
+                {i + 1} step
+              </option>
+            ))}
           </select>
         ) : null}
       </div>
       <div className="square-list">
         {squares &&
-          [...Array(squares.allSquares.reduce((total, curr) => total + curr, 0))]
-            .fill()
-            .map((_, i) => (
-              <div className="square" key={i}>
-                {i + 1}
-              </div>
-            ))}
+          [
+            ...Array(
+              squares.allSquares
+                .filter((_, i) => i < squares.step)
+                .reduce((total, curr) => total + curr, 0)
+            ),
+          ].map((_, i) => (
+            <div className="square" key={i}>
+              {i + 1}
+            </div>
+          ))}
       </div>
     </div>
   );
