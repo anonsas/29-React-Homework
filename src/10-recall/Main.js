@@ -19,7 +19,9 @@ function Main() {
     <div>
       <Square color="red" />
       <h2 style={{ color: color }}>{totalSum}</h2>
-      <Buttons setTotalSum={setTotalSum} />
+      <Buttons setTotalSum={setTotalSum} addValue={0} />
+      <Buttons setTotalSum={setTotalSum} addValue={50} />
+      <Buttons setTotalSum={setTotalSum} addValue={100} />
     </div>
   );
 }
