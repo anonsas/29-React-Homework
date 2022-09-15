@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Buttons() {
-  const [showButton, setShowButton] = useState('');
-
+function Buttons({ setTotalSum }) {
   const printNumber = (index) => {
-    setShowButton(index);
+    setTotalSum((prevState) => prevState + index);
   };
 
   return (
     <>
-      <h2>{showButton}</h2>
       <div className="buttons-container">
         {[...Array(50)].map((_, i) => (
           <button key={i} onClick={() => printNumber(i + 1)}>
