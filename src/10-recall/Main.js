@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Main.scss';
 import Square from './Square';
+import Buttons from './Buttons';
 
 function Main() {
-  const sayBu = () => {
-    console.log('%c Buuuu ', 'color: red');
-  };
+  const [buttonsLength, setButtonsLength] = useState(50);
+  // const sayBu = () => {
+  //   console.log('%c Buuuu ', 'color: red');
+  // };
+
   return (
     <div>
       <Square color="red" />
-      <button onClick={sayBu}>Buuuu</button>
+      <div className="buttons-container">
+        {[...Array(buttonsLength)].map((_, i) => (
+          <Buttons number={i + 1} />
+        ))}
+      </div>
     </div>
   );
 }
